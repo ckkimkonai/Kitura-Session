@@ -22,7 +22,7 @@ import Foundation
 ///
 /// ### Usage Example: ###
 /// ```swift
-/// let session = Session(secret: "Something very secret", cookie: [.name("mySessionId")])
+/// let session = Session(secret: "Something very secret", cookie: [.name("mySessionId"), .domain("mydomain.com")])
 /// router.all(middleware: session)
 /// ```
 /// In the example, an instance of `Session` is created with a custom value for the `CookieParameter` name.
@@ -33,6 +33,9 @@ public enum CookieParameter {
 
     /// The cookie's path attribute. This specifies the path for which the cookie is valid. The client should only provide this cookie for requests on this path.
     case path(String)
+
+    /// The cookie's domain.
+    case domain(String)
 
     /// The cookie's secure attribute, indicating whether the cookie should be provided only
     /// over secure (https) connections. Defaults to false.

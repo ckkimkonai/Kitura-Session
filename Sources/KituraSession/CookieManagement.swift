@@ -54,6 +54,7 @@ internal class CookieManagement {
     internal init(cookieCrypto: CookieCryptography, cookieParms: [CookieParameter]?) {
         var name = "kitura-session-id"
         var path = "/"
+        var domain: String?
         var secure = false
         var maxAge = -1.0
         if  let cookieParms = cookieParms {
@@ -63,6 +64,8 @@ internal class CookieManagement {
                     name = pName
                 case .path(let pPath):
                     path = pPath
+                case .domain(let pDomain):
+                    domain = pDomain
                 case .secure(let pSecure):
                     secure = pSecure
                 case .maxAge(let pMaxAge):
@@ -73,7 +76,7 @@ internal class CookieManagement {
 
         self.name = name
         self.path = path
-        self.domain = nil
+        self.domain = domain
         self.secure = secure
         self.maxAge = maxAge
 
